@@ -1,0 +1,55 @@
+<%# <section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        投稿一覧
+      </h1>
+    </div>
+  </div>
+</section> %>
+
+<%# 検索フォーム %>
+<%# <section> %>
+  <%# <%= form_tag(posts_path, :method => "get") do %>
+    <%# <p class="media"> %>
+      <%# <%= text_field_tag :search, params[:search], class: "form column is-3" %>
+      <%# <%= submit_tag "検索", :title => nil ,class: "user-btn button is-info" %>
+    <%# </p> %>
+  <%# <% end %>
+<%# </section> %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @posts.each do |post| %>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3"> <%# 投稿の画像を表示 %>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.image.url if post.image.present? %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48"> <%# プロフィールの画像を表示  画像がなければnoimageを表示 %>
+                    <%= image_tag post.user.image.url if post.user.image.present? %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%= link_to post.user.username, user_path(post.user) %></div>
+                </div>
+              </div>
+
+              <div class="content">
+                <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
