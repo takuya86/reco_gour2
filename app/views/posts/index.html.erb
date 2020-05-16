@@ -24,6 +24,16 @@
       <% @posts.each do |post| %>
         <div class="column is-3">
           <div class="card">
+            <div class="media postindex">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <%= image_tag post.user.image.url if post.user.image.present? %>
+                </figure>
+              </div>
+              <div class="media-content post-username">
+                <div class="title"><%= link_to post.user.username, user_path(post.user) %></div>
+              </div>
+            </div>
             <div class="card-image">
               <figure class="image is-4by3"> <%# 投稿の画像を表示 %>
                 <%= link_to post_path(post) do %>
@@ -32,17 +42,6 @@
               </figure>
             </div>
             <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48"> <%# プロフィールの画像を表示  画像がなければnoimageを表示 %>
-                    <%= image_tag post.user.image.url if post.user.image.present? %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="title"><%= link_to post.user.username, user_path(post.user) %></div>
-                </div>
-              </div>
-
               <div class="content">
                 <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
               </div>
