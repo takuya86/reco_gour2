@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :posts, dependent: :destroy
+         has_many :likes, dependent: :destroy
 
   def self.search(search)
     if search
@@ -14,5 +15,9 @@ class User < ApplicationRecord
     else
       User.all #全て表示させる
     end
+  end
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
   end
 end
