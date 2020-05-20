@@ -6,6 +6,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def new
@@ -43,8 +45,6 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to user_path(post.user), notice: "レシピを削除しました。"
   end
-
-
 
   private
   def post_params

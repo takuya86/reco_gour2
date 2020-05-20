@@ -50,6 +50,7 @@
                   <% end %>
                 <% end %>
                 <%# <%= @post.likes.count %> <%#カウント表示させる場合 %>
+                <i class="far fa-comment"></i>
               </div>
             <div class="media">
               <div class="media-content">
@@ -68,6 +69,9 @@
               <% if @post.user.id == current_user.id %>
                 <%= link_to "編集画面へ", edit_post_path(@post), class: "button is-success" %>
               <% end %>
+            </div>
+            <div class="content">
+
             </div>
           </div>
         </div>
