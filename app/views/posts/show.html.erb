@@ -50,7 +50,6 @@
                   <% end %>
                 <% end %>
                 <%# <%= @post.likes.count %> <%#カウント表示させる場合 %>
-                <i class="far fa-comment"></i>
               </div>
             <div class="media">
               <div class="media-content">
@@ -70,13 +69,33 @@
                 <%= link_to "編集画面へ", edit_post_path(@post), class: "button is-success" %>
               <% end %>
             </div>
-            <div class="content">
-
-            </div>
+              <table class="table is-narrow">
+                <tr>
+                  <th  >コメント一覧</th>
+                </tr>
+                <tr class="comment_content">
+                  <td class="comment">
+                    <% @comments.each do |comment| %>
+                      <%= link_to comment.user.username, user_path(comment.user_id), class: "comment_username" %>
+                        <%= comment.body %>
+                        <% if comment.user_id == current_user.id %>
+                          <%=link_to post_comments_path(comment.id), method: :delete do %>
+                            <i class="far fa-trash-alt"></i>
+                          <% end %>
+                        <% end %>
+                        <hr>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+              <%= form_with model:[@post, @comment] do |f| %>
+                <%= f.text_field :body, class: "input" %>
+                <br>
+                <%= f.submit 'コメントする', class: "button is-success sendbtn" %>
+              <% end %>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
