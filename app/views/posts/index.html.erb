@@ -9,14 +9,14 @@
 </section> %>
 
 <%# 検索フォーム %>
-<%# <section> %>
-  <%# <%= form_tag(posts_path, :method => "get") do %>
-    <%# <p class="media"> %>
-      <%# <%= text_field_tag :search, params[:search], class: "form column is-3" %>
-      <%# <%= submit_tag "検索", :title => nil ,class: "user-btn button is-info" %>
-    <%# </p> %>
-  <%# <% end %>
-<%# </section> %>
+<section>
+  <%= form_tag(posts_path, :method => "get") do %>
+    <p class="media">
+      <%= text_field_tag :search, params[:search], class: "form column is-3" %>
+      <%= submit_tag "検索", :title => nil ,class: "user-btn button is-info" %>
+    </p>
+  <% end %>
+</section>
 
 <section class="section">
   <div class="container">
