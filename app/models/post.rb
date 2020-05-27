@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['username LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
+      where(['title LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
     else
       Post.all #全て表示させる
     end
