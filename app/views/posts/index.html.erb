@@ -55,6 +55,7 @@
                 <%# <%= post.likes.count %> <%# カウント表示させる場合 %>
                 <i class="far fa-comment"></i>
               </div>
+              <h2 class="post_title"><%= link_to post.title, post_path(post) %></h2>
                 <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
             </div>
           </div>
