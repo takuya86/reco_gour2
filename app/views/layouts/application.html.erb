@@ -8,39 +8,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <div class="notification is-info">
-        <p class="notice"><%= notice %></p>
-      </div>
-    <% end %>
+    <div class="home-index_flash">
+      <% if flash[:notice] %>
+        <div class="notification is-info">
+          <p class="notice"><%= notice %></p>
+        </div>
+      <% end %>
 
-    <% if flash[:alert] %>
-      <div class="notification is-danger">
-        <p class="alert"><%= alert %></p>
-      </div>
-    <% end %>
+      <% if flash[:alert] %>
+        <div class="notification is-danger">
+          <p class="alert"><%= alert %></p>
+        </div>
+      <% end %>
+    </div>
 
-    <nav class="navbar is-light">
+  <div id="app">
+    <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do %>
           <h1 class="title is-4" style="font-family: cursive;">RecoGour</h1>
         <% end %>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" @click="isOpen = !isOpen" v-bind:class="{'is-active': isOpen}">
+          <span aria-hidden = "true"></span>
+          <span aria-hidden = "true"></span>
+          <span aria-hidden = "true"></span>
         </div>
       </div>
 
     <% if user_signed_in? %>
-        <div id="navbarExampleTransparentExample" class="navbar-menu">
-          <div class="navbar-end">
-            <div class="navbar-item">
+        <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{'is-active': isOpen}">
+          <div class="navbar-start">
+            <div class="navbar-item home-index_icon">
               <div class="field is-grouped">
-              <p class="control">
+                <p class="control">
                   <%= link_to posts_path do %>
                     <i class="fas fa-book-reader fa-2x"></i> <%# 投稿一覧 %>
                   <% end %>
@@ -50,10 +54,10 @@
                     <i class="far fa-edit fa-2x"></i> <%# 新規投稿 %>
                   <% end %>
                 </p>
-               <p class="control">
-                  <%= link_to users_path do %>
-                    <i class="fas fa-address-book fa-2x"></i> <%# アカウント一覧 %>
-                  <% end %>
+                <p class="control">
+                    <%= link_to users_path do %>
+                      <i class="fas fa-address-book fa-2x"></i> <%# アカウント一覧 %>
+                    <% end %>
                 </p>
                 <p class="control">
                   <%= link_to user_path(current_user) do %>
@@ -93,8 +97,17 @@
           </div>
         </div>
       <% end %>
-
     </nav>
+    </div>
+
+  <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isOpen: false
+        }
+    })
+  </script>
     <%= yield %>
   </body>
 </html>
