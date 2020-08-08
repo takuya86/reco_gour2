@@ -12,19 +12,20 @@
   </head>
 
   <body>
-    <div class="home-index_flash">
-      <% if flash[:notice] %>
-        <div class="notification is-info">
-          <p class="notice"><%= notice %></p>
-        </div>
-      <% end %>
 
-      <% if flash[:alert] %>
-        <div class="notification is-danger">
-          <p class="alert"><%= alert %></p>
-        </div>
-      <% end %>
-    </div>
+  <div class="home-index_flash">
+    <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="notification is-danger home-index_alert">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+  </div>
 
   <div id="app">
     <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">

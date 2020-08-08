@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.commentsbundle exe
+    @comments = @post.comments
     @comment = Comment.new
   end
 
